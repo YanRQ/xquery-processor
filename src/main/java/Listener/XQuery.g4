@@ -2,16 +2,16 @@ grammar XQuery;
 
 // XQuery
 query
-    : Var
-    | StringLiteral
-    | ap
-    | '(' query ')'
-    | query ',' query
-    | query '/' rp
-    | query  '//' rp
-    | '<' StringConstant '>' '{' query '}' '</' StringConstant '>'
-    | forClause letClause? whereClause? returnClause
-    | letClause query
+    : Var                                       #xqvar
+    | StringLiteral                             #xqstring
+    | ap                                        #xqap
+    | '(' query ')'                             #xqparen
+    | query ',' query                           #xqconcat
+    | query '/' rp                              #xqslash
+    | query  '//' rp                            #xqdoubleslash
+    | '<' StringConstant '>' '{' query '}' '</' StringConstant '>'  #xqtag
+    | forClause letClause? whereClause? returnClause                #xqclause
+    | letClause query                           #xqlet
 ;
 
 forClause
@@ -36,38 +36,38 @@ ap
 ;
 
 rp
-    : StringConstant
-    | '*'
-    | '.'
-    | '..'
-    | 'text()'
-    | '@' StringConstant
-    | '(' rp ')'
-    | rp '/' rp
-    | rp '//' rp
-    | rp '['  f ']'
-    | rp ',' rp
+    : StringConstant        #rpstring
+    | '*'                   #rpchild
+    | '.'                   #rpself
+    | '..'                  #rpparent
+    | 'text()'              #rptext
+    | '@' StringConstant    #rpattr
+    | '(' rp ')'            #rpparen
+    | rp '/' rp             #rpslash
+    | rp '//' rp            #rpdoubleslash
+    | rp '['  f ']'         #rpfilter
+    | rp ',' rp             #rpcancat
 ;
 
 f
-    : rp
-    | rp ('=' | 'eq') rp
-    | rp ('==' | 'is') rp
-    | '(' f ')'
-    | f 'and' f
-    | f 'or' f
-    | 'not' f
+    : rp                    #fltrp
+    | rp ('=' | 'eq') rp    #fltrpvaleq
+    | rp ('==' | 'is') rp   #fltrpeq
+    | '(' f ')'             #fltparen
+    | f 'and' f             #fltand
+    | f 'or' f              #fltor
+    | 'not' f               #fltnot
 ;
 
 cond
-    : query ('='|'eq') query
-    | query ('=='|'is') query
-    | 'empty(' query ')'
-    | 'some' Var 'in' query (',' Var 'in' query)* 'satisfies' cond
-    | '(' cond ')'
-    | cond 'and' cond
-    | cond 'or' cond
-    | 'not' cond
+    : query ('='|'eq') query        #condvaleq
+    | query ('=='|'is') query       #condeq
+    | 'empty(' query ')'            #condempty
+    | 'some' Var 'in' query (',' Var 'in' query)* 'satisfies' cond  #condexist
+    | '(' cond ')'                  #condparen
+    | cond 'and' cond               #condand
+    | cond 'or' cond                #condor
+    | 'not' cond                    #condnot
 ;
 
 fragment
