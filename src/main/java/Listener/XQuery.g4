@@ -31,8 +31,8 @@ returnClause
 ;
 
 ap
-    : 'doc(' StringLiteral ')' slash=('/'|'//') rp
-    | 'document(' StringLiteral ')' slash=('/'|'//') rp
+    : ('doc('|'document(') StringLiteral ')/'  rp #apslash
+    | ('doc('|'document(') StringLiteral ')//' rp #apdoubleslash
 ;
 
 rp
