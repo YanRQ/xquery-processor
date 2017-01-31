@@ -36,7 +36,7 @@ public class XPathRunner{
         //String filename="";
         //DomTree domtree=new DomTree(filename);
 
-        EvalListener eval = new EvalListener();
+        EvalVistor eval = new EvalVistor();
 
         ArrayList<Node> result=new ArrayList<Node>();
         //if (eval.visit(tree)!=null)

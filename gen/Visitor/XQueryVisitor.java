@@ -1,5 +1,5 @@
 // Generated from /Users/richard/Documents/graduate study/2nd semester/CS232B/project/xquery/src/main/java/Listener/XQuery.g4 by ANTLR 4.6
-package Listener;
+package Visitor;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -161,19 +161,19 @@ public interface XQueryVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitRpdoubleslash(XQueryParser.RpdoubleslashContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code rptag}
+	 * labeled alternative in {@link XQueryParser#rp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRptag(XQueryParser.RptagContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code rpchild}
 	 * labeled alternative in {@link XQueryParser#rp}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitRpchild(XQueryParser.RpchildContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code rpstring}
-	 * labeled alternative in {@link XQueryParser#rp}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitRpstring(XQueryParser.RpstringContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code rpcancat}
 	 * labeled alternative in {@link XQueryParser#rp}.

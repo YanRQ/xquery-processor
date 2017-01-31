@@ -1,5 +1,5 @@
 // Generated from /Users/richard/Documents/graduate study/2nd semester/CS232B/project/xquery/src/main/java/Listener/XQuery.g4 by ANTLR 4.6
-package Listener;
+package Visitor;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -131,6 +131,8 @@ public class XQueryParser extends Parser {
 		}
 	}
 	public static class XqconcatContext extends QueryContext {
+		public QueryContext leftq;
+		public QueryContext rightq;
 		public List<QueryContext> query() {
 			return getRuleContexts(QueryContext.class);
 		}
@@ -382,13 +384,14 @@ public class XQueryParser extends Parser {
 					case 1:
 						{
 						_localctx = new XqconcatContext(new QueryContext(_parentctx, _parentState));
+						((XqconcatContext)_localctx).leftq = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_query);
 						setState(50);
 						if (!(precpred(_ctx, 6))) throw new FailedPredicateException(this, "precpred(_ctx, 6)");
 						setState(51);
 						match(T__2);
 						setState(52);
-						query(7);
+						((XqconcatContext)_localctx).rightq = query(7);
 						}
 						break;
 					case 2:
@@ -788,6 +791,8 @@ public class XQueryParser extends Parser {
 		}
 	}
 	public static class RpslashContext extends RpContext {
+		public RpContext leftrp;
+		public RpContext rightrp;
 		public List<RpContext> rp() {
 			return getRuleContexts(RpContext.class);
 		}
@@ -802,6 +807,8 @@ public class XQueryParser extends Parser {
 		}
 	}
 	public static class RpdoubleslashContext extends RpContext {
+		public RpContext leftrp;
+		public RpContext rightrp;
 		public List<RpContext> rp() {
 			return getRuleContexts(RpContext.class);
 		}
@@ -815,6 +822,15 @@ public class XQueryParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
+	public static class RptagContext extends RpContext {
+		public TerminalNode StringConstant() { return getToken(XQueryParser.StringConstant, 0); }
+		public RptagContext(RpContext ctx) { copyFrom(ctx); }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof XQueryVisitor ) return ((XQueryVisitor<? extends T>)visitor).visitRptag(this);
+			else return visitor.visitChildren(this);
+		}
+	}
 	public static class RpchildContext extends RpContext {
 		public RpchildContext(RpContext ctx) { copyFrom(ctx); }
 		@Override
@@ -823,16 +839,9 @@ public class XQueryParser extends Parser {
 			else return visitor.visitChildren(this);
 		}
 	}
-	public static class RpstringContext extends RpContext {
-		public TerminalNode StringConstant() { return getToken(XQueryParser.StringConstant, 0); }
-		public RpstringContext(RpContext ctx) { copyFrom(ctx); }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof XQueryVisitor ) return ((XQueryVisitor<? extends T>)visitor).visitRpstring(this);
-			else return visitor.visitChildren(this);
-		}
-	}
 	public static class RpcancatContext extends RpContext {
+		public RpContext leftrp;
+		public RpContext rightrp;
 		public List<RpContext> rp() {
 			return getRuleContexts(RpContext.class);
 		}
@@ -890,7 +899,7 @@ public class XQueryParser extends Parser {
 			switch (_input.LA(1)) {
 			case StringConstant:
 				{
-				_localctx = new RpstringContext(_localctx);
+				_localctx = new RptagContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
 
@@ -976,37 +985,40 @@ public class XQueryParser extends Parser {
 					case 1:
 						{
 						_localctx = new RpslashContext(new RpContext(_parentctx, _parentState));
+						((RpslashContext)_localctx).leftrp = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_rp);
 						setState(116);
 						if (!(precpred(_ctx, 4))) throw new FailedPredicateException(this, "precpred(_ctx, 4)");
 						setState(117);
 						match(T__3);
 						setState(118);
-						rp(5);
+						((RpslashContext)_localctx).rightrp = rp(5);
 						}
 						break;
 					case 2:
 						{
 						_localctx = new RpdoubleslashContext(new RpContext(_parentctx, _parentState));
+						((RpdoubleslashContext)_localctx).leftrp = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_rp);
 						setState(119);
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
 						setState(120);
 						match(T__4);
 						setState(121);
-						rp(4);
+						((RpdoubleslashContext)_localctx).rightrp = rp(4);
 						}
 						break;
 					case 3:
 						{
 						_localctx = new RpcancatContext(new RpContext(_parentctx, _parentState));
+						((RpcancatContext)_localctx).leftrp = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_rp);
 						setState(122);
 						if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
 						setState(123);
 						match(T__2);
 						setState(124);
-						rp(2);
+						((RpcancatContext)_localctx).rightrp = rp(2);
 						}
 						break;
 					case 4:
@@ -1055,6 +1067,8 @@ public class XQueryParser extends Parser {
 		}
 	}
 	public static class FltorContext extends FContext {
+		public FContext leftf;
+		public FContext rightf;
 		public List<FContext> f() {
 			return getRuleContexts(FContext.class);
 		}
@@ -1080,6 +1094,8 @@ public class XQueryParser extends Parser {
 		}
 	}
 	public static class FltrpeqContext extends FContext {
+		public RpContext leftrp;
+		public RpContext rightrp;
 		public List<RpContext> rp() {
 			return getRuleContexts(RpContext.class);
 		}
@@ -1094,6 +1110,8 @@ public class XQueryParser extends Parser {
 		}
 	}
 	public static class FltrpvaleqContext extends FContext {
+		public RpContext leftrp;
+		public RpContext rightrp;
 		public List<RpContext> rp() {
 			return getRuleContexts(RpContext.class);
 		}
@@ -1130,6 +1148,8 @@ public class XQueryParser extends Parser {
 		}
 	}
 	public static class FltandContext extends FContext {
+		public FContext leftf;
+		public FContext rightf;
 		public List<FContext> f() {
 			return getRuleContexts(FContext.class);
 		}
@@ -1179,7 +1199,7 @@ public class XQueryParser extends Parser {
 				_ctx = _localctx;
 				_prevctx = _localctx;
 				setState(137);
-				rp(0);
+				((FltrpvaleqContext)_localctx).leftrp = rp(0);
 				setState(138);
 				_la = _input.LA(1);
 				if ( !(_la==T__27 || _la==T__28) ) {
@@ -1191,7 +1211,7 @@ public class XQueryParser extends Parser {
 					consume();
 				}
 				setState(139);
-				rp(0);
+				((FltrpvaleqContext)_localctx).rightrp = rp(0);
 				}
 				break;
 			case 3:
@@ -1200,7 +1220,7 @@ public class XQueryParser extends Parser {
 				_ctx = _localctx;
 				_prevctx = _localctx;
 				setState(141);
-				rp(0);
+				((FltrpeqContext)_localctx).leftrp = rp(0);
 				setState(142);
 				_la = _input.LA(1);
 				if ( !(_la==T__29 || _la==T__30) ) {
@@ -1212,7 +1232,7 @@ public class XQueryParser extends Parser {
 					consume();
 				}
 				setState(143);
-				rp(0);
+				((FltrpeqContext)_localctx).rightrp = rp(0);
 				}
 				break;
 			case 4:
@@ -1255,25 +1275,27 @@ public class XQueryParser extends Parser {
 					case 1:
 						{
 						_localctx = new FltandContext(new FContext(_parentctx, _parentState));
+						((FltandContext)_localctx).leftf = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_f);
 						setState(153);
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
 						setState(154);
 						match(T__31);
 						setState(155);
-						f(4);
+						((FltandContext)_localctx).rightf = f(4);
 						}
 						break;
 					case 2:
 						{
 						_localctx = new FltorContext(new FContext(_parentctx, _parentState));
+						((FltorContext)_localctx).leftf = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_f);
 						setState(156);
 						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
 						setState(157);
 						match(T__32);
 						setState(158);
-						f(3);
+						((FltorContext)_localctx).rightf = f(3);
 						}
 						break;
 					}
@@ -1308,6 +1330,8 @@ public class XQueryParser extends Parser {
 		}
 	}
 	public static class CondeqContext extends CondContext {
+		public QueryContext leftq;
+		public QueryContext rightq;
 		public List<QueryContext> query() {
 			return getRuleContexts(QueryContext.class);
 		}
@@ -1333,6 +1357,8 @@ public class XQueryParser extends Parser {
 		}
 	}
 	public static class CondvaleqContext extends CondContext {
+		public QueryContext leftq;
+		public QueryContext rightq;
 		public List<QueryContext> query() {
 			return getRuleContexts(QueryContext.class);
 		}
@@ -1379,6 +1405,8 @@ public class XQueryParser extends Parser {
 		}
 	}
 	public static class CondandContext extends CondContext {
+		public CondContext leftc;
+		public CondContext rightc;
 		public List<CondContext> cond() {
 			return getRuleContexts(CondContext.class);
 		}
@@ -1393,6 +1421,8 @@ public class XQueryParser extends Parser {
 		}
 	}
 	public static class CondorContext extends CondContext {
+		public CondContext leftc;
+		public CondContext rightc;
 		public List<CondContext> cond() {
 			return getRuleContexts(CondContext.class);
 		}
@@ -1444,7 +1474,7 @@ public class XQueryParser extends Parser {
 				_prevctx = _localctx;
 
 				setState(165);
-				query(0);
+				((CondvaleqContext)_localctx).leftq = query(0);
 				setState(166);
 				_la = _input.LA(1);
 				if ( !(_la==T__27 || _la==T__28) ) {
@@ -1456,7 +1486,7 @@ public class XQueryParser extends Parser {
 					consume();
 				}
 				setState(167);
-				query(0);
+				((CondvaleqContext)_localctx).rightq = query(0);
 				}
 				break;
 			case 2:
@@ -1465,7 +1495,7 @@ public class XQueryParser extends Parser {
 				_ctx = _localctx;
 				_prevctx = _localctx;
 				setState(169);
-				query(0);
+				((CondeqContext)_localctx).leftq = query(0);
 				setState(170);
 				_la = _input.LA(1);
 				if ( !(_la==T__29 || _la==T__30) ) {
@@ -1477,7 +1507,7 @@ public class XQueryParser extends Parser {
 					consume();
 				}
 				setState(171);
-				query(0);
+				((CondeqContext)_localctx).rightq = query(0);
 				}
 				break;
 			case 3:
@@ -1572,25 +1602,27 @@ public class XQueryParser extends Parser {
 					case 1:
 						{
 						_localctx = new CondandContext(new CondContext(_parentctx, _parentState));
+						((CondandContext)_localctx).leftc = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_cond);
 						setState(201);
 						if (!(precpred(_ctx, 3))) throw new FailedPredicateException(this, "precpred(_ctx, 3)");
 						setState(202);
 						match(T__31);
 						setState(203);
-						cond(4);
+						((CondandContext)_localctx).rightc = cond(4);
 						}
 						break;
 					case 2:
 						{
 						_localctx = new CondorContext(new CondContext(_parentctx, _parentState));
+						((CondorContext)_localctx).leftc = _prevctx;
 						pushNewRecursionContext(_localctx, _startState, RULE_cond);
 						setState(204);
 						if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
 						setState(205);
 						match(T__32);
 						setState(206);
-						cond(3);
+						((CondorContext)_localctx).rightc = cond(3);
 						}
 						break;
 					}
