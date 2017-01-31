@@ -1,6 +1,7 @@
 grammar XQuery;
 
 // XQuery
+/*
 query
     : Var                                                   #xqvar
     | StringLiteral                                         #xqstring
@@ -27,19 +28,19 @@ whereClause : 'where' cond;
 returnClause
     : 'return' query
 ;
-
+*/
 ap
-    : ('doc('|'document(') StringLiteral ')/'  rp #apslash
-    | ('doc('|'document(') StringLiteral ')//' rp #apdoubleslash
+    : ('doc('|'document(') file=StringLiteral ')/'  rp #apslash
+    | ('doc('|'document(') file=StringLiteral ')//' rp #apdoubleslash
 ;
 
 rp
-    : StringConstant            #rptag
+    : name=StringConstant       #rptag
     | '*'                       #rpchild
     | '.'                       #rpself
     | '..'                      #rpparent
     | 'text()'                  #rptext
-    | '@' StringConstant        #rpattr
+    | '@' name=StringConstant   #rpattr
     | '(' rp ')'                #rpparen
     | leftrp=rp '/' rightrp=rp  #rpslash
     | leftrp=rp '//' rightrp=rp #rpdoubleslash
@@ -56,7 +57,7 @@ f
     | leftf=f 'or' rightf=f                 #fltor
     | 'not' f                               #fltnot
 ;
-
+/*
 cond
     : leftq=query ('='|'eq') rightq=query           #condvaleq
     | leftq=query ('=='|'is') rightq=query          #condeq
@@ -67,7 +68,7 @@ cond
     | leftc=cond 'or' rightc=cond                   #condor
     | 'not' cond                                    #condnot
 ;
-
+*/
 fragment
 Letter
     : [a-zA-Z_]
