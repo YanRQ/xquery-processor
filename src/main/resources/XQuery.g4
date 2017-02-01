@@ -30,8 +30,8 @@ returnClause
 ;
 */
 ap
-    : ('doc('|'document(') file ')/'  rp #apslash
-    | ('doc('|'document(') file ')//' rp #apdoubleslash
+    : ('doc('|'document(') file ')' '/'  rp #apslash
+    | ('doc('|'document(') file ')' '//' rp #apdoubleslash
 ;
 
 rp

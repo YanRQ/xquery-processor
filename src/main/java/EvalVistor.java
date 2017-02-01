@@ -33,6 +33,9 @@ public class EvalVistor extends XQueryBaseVisitor<ArrayList<Node>> {
             ArrayList<Node> rpSlashSlashRp = visit_descendent_or_self(children, ruleNode);
             result.addAll(rpSlashRp);
             result.addAll(rpSlashSlashRp);
+
+            //System.out.println("rpSlashRp: " + rpSlashRp.size());
+            //System.out.println("rpSlashSlashRp: " + rpSlashSlashRp.size());
         }
 
         return new ArrayList<Node>(result);
@@ -77,7 +80,6 @@ public class EvalVistor extends XQueryBaseVisitor<ArrayList<Node>> {
         ArrayList<Node> root = new ArrayList<Node>();
         root.add(currDoc.getDocumentElement().getParentNode());
         stack.push(root);
-
         return visit_descendent_or_self(root, ctx.rp());
     }
 
@@ -128,26 +130,28 @@ public class EvalVistor extends XQueryBaseVisitor<ArrayList<Node>> {
     @Override
     public ArrayList<Node> visitRpchild(XQueryParser.RpchildContext ctx) {
         ArrayList<Node> result = new ArrayList<Node>();
-        for (Node node : stack.peek()) {
-            result.add(node);
+        ArrayList<Node> current_Node = stack.peek();
+        for (int i=0; i<current_Node.size(); ++i) {
+            NodeList children = current_Node.get(i).getChildNodes();
+            for (int j=0; j<children.getLength(); ++j) {
+                result.add(children.item(j));
+            }
         }
+
         return result;
     }
     @Override
     public ArrayList<Node> visitRptag(XQueryParser.RptagContext ctx) {
         String tagName = ctx.string().getText();
+
         ArrayList<Node> current_Node = stack.peek();
         ArrayList<Node> result = new ArrayList<Node>();
-
         for (int i=0; i<current_Node.size(); ++i) {
             NodeList children = current_Node.get(i).getChildNodes();
             for (int j=0; j<children.getLength(); ++j) {
                 Node node = children.item(j);
-                if (node instanceof Element) {
-                    Element child = (Element) node;
-                    if (child.getNodeName().equals(tagName))
-                        result.add(node);
-                }
+                if (node.getNodeName().equals(tagName))
+                    result.add(node);
             }
         }
 

@@ -24,10 +24,11 @@ public class XPath_Runner{
         // Visit
         EvalVistor visitor = new EvalVistor();
         ArrayList<Node> res = visitor.visit(tree);
-
+        System.out.println(res.size());
         // Build result String
         StringBuilder resStr = new StringBuilder();
         for (Node node : res) {
+
             String str = nodeToString(node);
             if (node.getNodeType() != Node.TEXT_NODE) {
                 resStr.append(str.substring(str.indexOf("?>") + 2));
