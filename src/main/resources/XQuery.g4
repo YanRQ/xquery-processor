@@ -30,33 +30,37 @@ returnClause
 ;
 */
 ap
-    : ('doc('|'document(') file=StringLiteral ')/'  rp #apslash
-    | ('doc('|'document(') file=StringLiteral ')//' rp #apdoubleslash
+    : ('doc('|'document(') file ')/'  rp #apslash
+    | ('doc('|'document(') file ')//' rp #apdoubleslash
 ;
 
 rp
-    : name=StringConstant       #rptag
+    : string                    #rptag
     | '*'                       #rpchild
     | '.'                       #rpself
     | '..'                      #rpparent
     | 'text()'                  #rptext
-    | '@' name=StringConstant   #rpattr
+    | '@' string                #rpattr
     | '(' rp ')'                #rpparen
-    | leftrp=rp '/' rightrp=rp  #rpslash
-    | leftrp=rp '//' rightrp=rp #rpdoubleslash
+    | rp '/' rp                 #rpslash
+    | rp '//' rp                #rpdoubleslash
     | rp '['  f ']'             #rpfilter
-    | leftrp=rp ',' rightrp=rp  #rpcancat
+    | rp ',' rp                 #rpcancat
 ;
 
 f
     : rp                                    #fltrp
-    | leftrp=rp ('=' | 'eq') rightrp=rp     #fltrpvaleq
-    | leftrp=rp ('==' | 'is') rightrp=rp    #fltrpeq
+    | rp ('=' | 'eq') rp                    #fltrpvaleq
+    | rp ('==' | 'is') rp                   #fltrpeq
     | '(' f ')'                             #fltparen
-    | leftf=f 'and' rightf=f                #fltand
-    | leftf=f 'or' rightf=f                 #fltor
+    | f 'and' f                             #fltand
+    | f 'or' f                              #fltor
     | 'not' f                               #fltnot
 ;
+
+file: StringLiteral;
+string: StringConstant;
+
 /*
 cond
     : leftq=query ('='|'eq') rightq=query           #condvaleq

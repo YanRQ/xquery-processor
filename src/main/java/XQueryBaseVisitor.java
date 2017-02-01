@@ -1,4 +1,4 @@
-// Generated from XQuery.g4 by ANTLR 4.5.3
+// Generated from /Users/richard/Documents/graduate study/2nd semester/CS232B/project/xquery/src/main/resources/XQuery.g4 by ANTLR 4.6
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
@@ -150,4 +150,18 @@ public class XQueryBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitFltand(XQueryParser.FltandContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitFile(XQueryParser.FileContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitString(XQueryParser.StringContext ctx) { return visitChildren(ctx); }
 }

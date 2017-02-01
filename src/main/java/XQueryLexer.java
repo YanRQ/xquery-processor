@@ -1,4 +1,4 @@
-// Generated from XQuery.g4 by ANTLR 4.5.3
+// Generated from /Users/richard/Documents/graduate study/2nd semester/CS232B/project/xquery/src/main/resources/XQuery.g4 by ANTLR 4.6
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -10,7 +10,7 @@ import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class XQueryLexer extends Lexer {
-	static { RuntimeMetaData.checkVersion("4.5.3", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.6", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =

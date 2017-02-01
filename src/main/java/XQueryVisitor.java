@@ -1,4 +1,4 @@
-// Generated from XQuery.g4 by ANTLR 4.5.3
+// Generated from /Users/richard/Documents/graduate study/2nd semester/CS232B/project/xquery/src/main/resources/XQuery.g4 by ANTLR 4.6
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -149,4 +149,16 @@ public interface XQueryVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFltand(XQueryParser.FltandContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XQueryParser#file}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFile(XQueryParser.FileContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XQueryParser#string}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitString(XQueryParser.StringContext ctx);
 }
