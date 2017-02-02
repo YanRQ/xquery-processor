@@ -1,4 +1,6 @@
 import org.w3c.dom.*;
+
+import java.lang.reflect.Array;
 import java.util.*;
 import org.antlr.v4.runtime.tree.*;
 import javax.xml.parsers.*;
@@ -192,7 +194,6 @@ public class EvalVistor extends XQueryBaseVisitor<ArrayList<Node>> {
     @Override
     public ArrayList<Node> visitFltor(XQueryParser.FltorContext ctx) {
         ArrayList<Node> current_Node = stack.peek();
-        HashSet<Node> result = new HashSet<Node>();
         ArrayList<Node> res1 = new ArrayList<Node>();
         ArrayList<Node> res2 = new ArrayList<Node>();
         for (Node node : stack.peek()) {
@@ -206,9 +207,11 @@ public class EvalVistor extends XQueryBaseVisitor<ArrayList<Node>> {
             }
 
         }
-        result.addAll(res1);
-        result.addAll(res2);
-        return new ArrayList<Node>(result);
+        for (Node node : res2) {
+            if (!idContains(res1, node))
+                res1.add(node);
+        }
+        return res1;
     }
 
     private boolean valueContains(ArrayList<Node> nodelist, Node node) {
@@ -300,14 +303,13 @@ public class EvalVistor extends XQueryBaseVisitor<ArrayList<Node>> {
 
     @Override
     public ArrayList<Node> visitFltparen(XQueryParser.FltparenContext ctx) {
-        ArrayList<Node> res = visitNode(stack.peek(), ctx.f());
-        return res;
+        return visitNode(stack.peek(), ctx.f());
     }
 
     @Override
     public ArrayList<Node> visitFltand(XQueryParser.FltandContext ctx) {
         ArrayList<Node> current_Node = stack.peek();
-        HashSet<Node> result = new HashSet<Node>();
+        ArrayList<Node> result = new ArrayList<Node>();
         ArrayList<Node> res1 = new ArrayList<Node>();
         ArrayList<Node> res2 = new ArrayList<Node>();
         for (Node node : stack.peek()) {
@@ -321,11 +323,11 @@ public class EvalVistor extends XQueryBaseVisitor<ArrayList<Node>> {
             }
         }
         for (Node node : res1) {
-            if (result.contains(node))
+            if (res2.contains(node))
                 result.add(node);
         }
 
-        return new ArrayList<Node>(result);
+        return result;
     }
 
 }

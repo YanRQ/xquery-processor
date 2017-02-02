@@ -28,7 +28,6 @@ public class XPath_Runner{
         // Build result String
         StringBuilder resStr = new StringBuilder();
         for (Node node : res) {
-
             String str = nodeToString(node);
             if (node.getNodeType() != Node.TEXT_NODE) {
                 resStr.append(str.substring(str.indexOf("?>") + 2));
