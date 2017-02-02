@@ -45,8 +45,9 @@ public class EvalVistor extends XQueryBaseVisitor<ArrayList<Node>> {
 
     @Override
     public ArrayList<Node> visitApslash(XQueryParser.ApslashContext ctx) {
-        String filename = ctx.file().getText();
-        File xmlFile = new File(filename);
+        String fileName = ctx.file().getText();
+        fileName = fileName.substring(1, fileName.length()-1); // delete quotes
+        File xmlFile = new File(fileName);
         Document currDoc = null;
 
         try {
@@ -99,6 +100,7 @@ public class EvalVistor extends XQueryBaseVisitor<ArrayList<Node>> {
         ArrayList<Node> result=new ArrayList<Node>();
         for (int i=0; i<current_Node.size(); ++i) {
             Node temp = current_Node.get(i);
+            if (temp == null) continue;
             Node node;
             if (temp.getNodeType() == 2)
                 node = ((Attr)temp).getOwnerElement();

@@ -1,35 +1,171 @@
-<TITLE>SCENE IV.  Another part of the same street, before the house of BRUTUS.</TITLE>
+<book category="WEB">
+  <title lang="en">Learning XML</title>
+  <author>Erik T. Ray</author>
+  <year>2003</year>
+  <price>39.95</price>
+</book>
 
-<TITLE>SCENE II.  The same. The field of battle.</TITLE>
+<author>Giada De Laurentiis</author>
 
-<TITLE>SCENE II.  CAESAR's house.</TITLE>
+<title>Data on the Web</title>
 
-<TITLE>SCENE III.  Brutus's tent.</TITLE>
+<author>Vaidyanathan Nagarajan</author>
 
-<TITLE>SCENE II.  A public place.</TITLE>
+<author>Erik T. Ray</author>
 
-<TITLE>SCENE V.  Another part of the field.</TITLE>
+<bookstore>
 
-<TITLE>SCENE I.  Rome. BRUTUS's orchard.</TITLE>
+<book category="COOKING">
+  <title lang="en">Everyday Italian</title>
+  <author>Giada De Laurentiis</author>
+  <year>2005</year>
+  <price>30.00</price>
+</book>
 
-<TITLE>SCENE I.  The plains of Philippi.</TITLE>
+<book category="CHILDREN">
+  <title lang="en">HarryPotter</title>
+  <author>J K. Rowling</author>
+  <year>2005</year>
+  <price>29.99</price>
+</book>
 
-<TITLE>SCENE III.  A street near the Capitol.</TITLE>
+<book category="WEB">
+  <title lang="en">XQuery Kick Start</title>
+  <author>James McGovern</author>
+  <author>Per Bothner</author>
+  <author>Kurt Cagle</author>
+  <author>James Linn</author>
+  <author>Vaidyanathan Nagarajan</author>
+  <year>2003</year>
+  <price>49.99</price>
+</book>
 
-<TITLE>SCENE III.  Another part of the field.</TITLE>
+<book category="WEB">
+  <title lang="en">Learning XML</title>
+  <author>Erik T. Ray</author>
+  <year>2003</year>
+  <price>39.95</price>
+</book>
 
-<TITLE>SCENE II.  Camp near Sardis. Before BRUTUS's tent.</TITLE>
+  <book category="WEB">
+    <title>Data on the Web</title>
+    <author>Erik T. Ray</author>
+    <year>2003</year>
+    <price>34.95</price>
+  </book>
+</bookstore>
 
-<TITLE>SCENE III.  A street.</TITLE>
+<price>34.95</price>
 
-<TITLE>SCENE IV.  Another part of the field.</TITLE>
+<author>James McGovern</author>
 
-<TITLE>SCENE I.  Rome. Before the Capitol; the Senate sitting above.</TITLE>
 
-<TITLE>SCENE I.  Rome. A street.</TITLE>
+<bookstore>
 
-<TITLE>SCENE III.  The same. A street.</TITLE>
+<book category="COOKING">
+  <title lang="en">Everyday Italian</title>
+  <author>Giada De Laurentiis</author>
+  <year>2005</year>
+  <price>30.00</price>
+</book>
 
-<TITLE>SCENE II.  The Forum.</TITLE>
+<book category="CHILDREN">
+  <title lang="en">HarryPotter</title>
+  <author>J K. Rowling</author>
+  <year>2005</year>
+  <price>29.99</price>
+</book>
 
-<TITLE>SCENE I.  A house in Rome.</TITLE>
+<book category="WEB">
+  <title lang="en">XQuery Kick Start</title>
+  <author>James McGovern</author>
+  <author>Per Bothner</author>
+  <author>Kurt Cagle</author>
+  <author>James Linn</author>
+  <author>Vaidyanathan Nagarajan</author>
+  <year>2003</year>
+  <price>49.99</price>
+</book>
+
+<book category="WEB">
+  <title lang="en">Learning XML</title>
+  <author>Erik T. Ray</author>
+  <year>2003</year>
+  <price>39.95</price>
+</book>
+
+  <book category="WEB">
+    <title>Data on the Web</title>
+    <author>Erik T. Ray</author>
+    <year>2003</year>
+    <price>34.95</price>
+  </book>
+</bookstore>
+
+<title lang="en">Learning XML</title>
+
+<title lang="en">XQuery Kick Start</title>
+
+<price>29.99</price>
+
+<author>Erik T. Ray</author>
+
+<author>J K. Rowling</author>
+
+<title lang="en">HarryPotter</title>
+
+<book category="WEB">
+  <title lang="en">XQuery Kick Start</title>
+  <author>James McGovern</author>
+  <author>Per Bothner</author>
+  <author>Kurt Cagle</author>
+  <author>James Linn</author>
+  <author>Vaidyanathan Nagarajan</author>
+  <year>2003</year>
+  <price>49.99</price>
+</book>
+
+<year>2003</year>
+
+<year>2003</year>
+
+<author>Kurt Cagle</author>
+
+<book category="COOKING">
+  <title lang="en">Everyday Italian</title>
+  <author>Giada De Laurentiis</author>
+  <year>2005</year>
+  <price>30.00</price>
+</book>
+
+<title lang="en">Everyday Italian</title>
+
+<price>49.99</price>
+
+<price>30.00</price>
+
+<book category="WEB">
+    <title>Data on the Web</title>
+    <author>Erik T. Ray</author>
+    <year>2003</year>
+    <price>34.95</price>
+  </book>
+
+<year>2005</year>
+
+<year>2003</year>
+
+<year>2005</year>
+
+<author>Per Bothner</author>
+
+<book category="CHILDREN">
+  <title lang="en">HarryPotter</title>
+  <author>J K. Rowling</author>
+  <year>2005</year>
+  <price>29.99</price>
+</book>
+
+<author>James Linn</author>
+
+<price>39.95</price>
