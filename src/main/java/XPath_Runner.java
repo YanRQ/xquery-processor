@@ -25,15 +25,25 @@ public class XPath_Runner{
         EvalVistor visitor = new EvalVistor();
         ArrayList<Node> res = visitor.visit(tree);
         System.out.println(res.size());
+        System.out.println(res.get(0).getNodeType());
         // Build result String
         StringBuilder resStr = new StringBuilder();
         for (Node node : res) {
-            String str = nodeToString(node);
-            if (node.getNodeType() != Node.TEXT_NODE) {
-                resStr.append(str.substring(str.indexOf("?>") + 2));
+            String str;
+            if (node.getNodeType() == 1) {
+                str = nodeToString(node);
+                if (node.getNodeType() != Node.TEXT_NODE) {
+                    resStr.append(str.substring(str.indexOf("?>") + 2));
+                    resStr.append('\n');
+                } else {
+                    resStr.append(str.substring(str.indexOf("?>") + 2));
+                }
+            }
+            if (node.getNodeType() == 2) {
+                str = node.getTextContent();
+
+                resStr.append(node.getNodeName()+"=\""+str+"\"");
                 resStr.append('\n');
-            } else {
-                resStr.append(str.substring(str.indexOf("?>") + 2));
             }
         }
         return resStr.toString().trim();

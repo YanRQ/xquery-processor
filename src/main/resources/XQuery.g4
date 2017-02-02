@@ -4,14 +4,14 @@ grammar XQuery;
 /*
 query
     : Var                                                   #xqvar
-    | StringLiteral                                         #xqstring
+    | string                                                #xqstring
     | ap                                                    #xqap
     | '(' query ')'                                         #xqparen
-    | leftq=query ',' rightq=query                          #xqconcat
+    | query ',' query                                       #xqconcat
     | query '/' rp                                          #xqslash
     | query  '//' rp                                        #xqdoubleslash
-    | '<' StringConstant '>' '{' query '}' '</' StringConstant '>'  #xqtag
-    | forClause letClause? whereClause? returnClause                #xqclause
+    | '<' string '>' '{' query '}' '</' string '>'          #xqtag
+    | forClause letClause? whereClause? returnClause        #xqclause
     | letClause query                                       #xqlet
 ;
 
@@ -63,14 +63,14 @@ string: StringConstant;
 
 /*
 cond
-    : leftq=query ('='|'eq') rightq=query           #condvaleq
-    | leftq=query ('=='|'is') rightq=query          #condeq
-    | 'empty(' query ')'                            #condempty
+    : query ('='|'eq') query           #condvaleq
+    | query ('=='|'is') query          #condeq
+    | 'empty(' query ')'               #condempty
     | 'some' Var 'in' query (',' Var 'in' query)* 'satisfies' cond  #condexist
-    | '(' cond ')'                                  #condparen
-    | leftc=cond 'and' rightc=cond                  #condand
-    | leftc=cond 'or' rightc=cond                   #condor
-    | 'not' cond                                    #condnot
+    | '(' cond ')'                     #condparen
+    | cond 'and' cond                  #condand
+    | cond 'or' cond                   #condor
+    | 'not' cond                       #condnot
 ;
 */
 fragment

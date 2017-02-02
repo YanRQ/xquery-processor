@@ -97,12 +97,19 @@ public class EvalVistor extends XQueryBaseVisitor<ArrayList<Node>> {
     public ArrayList<Node> visitRpparent(XQueryParser.RpparentContext ctx){
         ArrayList<Node> current_Node = stack.peek();
         ArrayList<Node> result=new ArrayList<Node>();
-
         for (int i=0; i<current_Node.size(); ++i) {
-            result.add(current_Node.get(i).getParentNode());
+            Node temp = current_Node.get(i);
+            Node node;
+            if (temp.getNodeType() == 2)
+                node = ((Attr)temp).getOwnerElement();
+            else
+                node = current_Node.get(i).getParentNode();
+            // need unique
+            if (!idContains(result, node))
+                result.add(node);
         }
 
-        // need unique
+
         return result;
 
     }
@@ -164,7 +171,6 @@ public class EvalVistor extends XQueryBaseVisitor<ArrayList<Node>> {
         ArrayList<Node> res1 = visitNode(stack.peek(), ctx.rp(0));
         ArrayList<Node> res2 = visitNode(stack.peek(), ctx.rp(1));
 
-        // TODO: not sure about the addall function
         res1.addAll(res2);
         return res1;
     }
