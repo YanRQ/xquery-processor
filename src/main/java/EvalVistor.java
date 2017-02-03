@@ -20,7 +20,7 @@ public class EvalVistor extends XQueryBaseVisitor<ArrayList<Node>> {
     }
 
     private ArrayList<Node> visit_descendent_or_self(ArrayList<Node> current_Node, RuleNode ruleNode) {
-        HashSet<Node> result = new HashSet<Node>();
+        ArrayList<Node> result = new ArrayList<Node>();
         if (current_Node.size() == 0) return new ArrayList<Node>(result);
 
         for (Node node : current_Node) {
@@ -34,19 +34,24 @@ public class EvalVistor extends XQueryBaseVisitor<ArrayList<Node>> {
             ArrayList<Node> rpSlashRp = visitNode(temp, ruleNode);
             ArrayList<Node> rpSlashSlashRp = visit_descendent_or_self(children, ruleNode);
             result.addAll(rpSlashRp);
-            result.addAll(rpSlashSlashRp);
+            for (Node node2 : rpSlashSlashRp) {
+                if (!idContains(result, node2))
+                    result.add(node2);
+            }
+            //result.addAll(rpSlashSlashRp);
 
             //System.out.println("rpSlashRp: " + rpSlashRp.size());
             //System.out.println("rpSlashSlashRp: " + rpSlashSlashRp.size());
         }
 
-        return new ArrayList<Node>(result);
+        return result;
     }
 
     @Override
     public ArrayList<Node> visitApslash(XQueryParser.ApslashContext ctx) {
-        String filename = ctx.file().getText();
-        File xmlFile = new File(filename);
+        String fileName = ctx.file().getText();
+        fileName = fileName.substring(1, fileName.length()-1); // delete quotes
+        File xmlFile = new File(fileName);
         Document currDoc = null;
 
         try {
@@ -97,12 +102,20 @@ public class EvalVistor extends XQueryBaseVisitor<ArrayList<Node>> {
     public ArrayList<Node> visitRpparent(XQueryParser.RpparentContext ctx){
         ArrayList<Node> current_Node = stack.peek();
         ArrayList<Node> result=new ArrayList<Node>();
-
         for (int i=0; i<current_Node.size(); ++i) {
-            result.add(current_Node.get(i).getParentNode());
+            Node temp = current_Node.get(i);
+            if (temp == null) continue;
+            Node node;
+            if (temp.getNodeType() == 2)
+                node = ((Attr)temp).getOwnerElement();
+            else
+                node = current_Node.get(i).getParentNode();
+            // need unique
+            if (!idContains(result, node))
+                result.add(node);
         }
 
-        // need unique
+
         return result;
 
     }
@@ -164,7 +177,6 @@ public class EvalVistor extends XQueryBaseVisitor<ArrayList<Node>> {
         ArrayList<Node> res1 = visitNode(stack.peek(), ctx.rp(0));
         ArrayList<Node> res2 = visitNode(stack.peek(), ctx.rp(1));
 
-        // TODO: not sure about the addall function
         res1.addAll(res2);
         return res1;
     }

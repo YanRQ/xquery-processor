@@ -28,18 +28,26 @@ public class XPath_Runner{
         // Build result String
         StringBuilder resStr = new StringBuilder();
         for (Node node : res) {
-            String str = nodeToString(node);
-            if (node.getNodeType() != Node.TEXT_NODE) {
+            if (node == null) continue;
+            String str;
+            System.out.println(node.getNodeType());
+            if (node.getNodeType() != 2) {
+                str = nodeToString(node);
                 resStr.append(str.substring(str.indexOf("?>") + 2));
                 resStr.append('\n');
-            } else {
-                resStr.append(str.substring(str.indexOf("?>") + 2));
+
+            }
+            if (node.getNodeType() == 2) {
+                str = node.getTextContent();
+
+                resStr.append(node.getNodeName()+"=\""+str+"\"");
+                resStr.append('\n');
             }
         }
         return resStr.toString().trim();
     }
 
-    public static String nodeToString(Node node) throws Exception {
+    private static String nodeToString(Node node) throws Exception {
         StringWriter writer = new StringWriter();
         Transformer transformer = TransformerFactory.newInstance().newTransformer();
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
