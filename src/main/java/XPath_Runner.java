@@ -30,7 +30,7 @@ public class XPath_Runner{
         for (Node node : res) {
             if (node == null) continue;
             String str;
-
+            System.out.println(node.getNodeType());
             if (node.getNodeType() != 2) {
                 str = nodeToString(node);
                 resStr.append(str.substring(str.indexOf("?>") + 2));

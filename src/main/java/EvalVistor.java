@@ -20,7 +20,7 @@ public class EvalVistor extends XQueryBaseVisitor<ArrayList<Node>> {
     }
 
     private ArrayList<Node> visit_descendent_or_self(ArrayList<Node> current_Node, RuleNode ruleNode) {
-        HashSet<Node> result = new HashSet<Node>();
+        ArrayList<Node> result = new ArrayList<Node>();
         if (current_Node.size() == 0) return new ArrayList<Node>(result);
 
         for (Node node : current_Node) {
@@ -34,13 +34,17 @@ public class EvalVistor extends XQueryBaseVisitor<ArrayList<Node>> {
             ArrayList<Node> rpSlashRp = visitNode(temp, ruleNode);
             ArrayList<Node> rpSlashSlashRp = visit_descendent_or_self(children, ruleNode);
             result.addAll(rpSlashRp);
-            result.addAll(rpSlashSlashRp);
+            for (Node node2 : rpSlashSlashRp) {
+                if (!idContains(result, node2))
+                    result.add(node2);
+            }
+            //result.addAll(rpSlashSlashRp);
 
             //System.out.println("rpSlashRp: " + rpSlashRp.size());
             //System.out.println("rpSlashSlashRp: " + rpSlashSlashRp.size());
         }
 
-        return new ArrayList<Node>(result);
+        return result;
     }
 
     @Override
